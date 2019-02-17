@@ -88,9 +88,10 @@ func GetReport() (Report, error) {
 		Station:   "Taichung City (Zhongming rd station)",
 		Index:     r.Data.Index,
 		CheckedAt: r.Data.Time.S,
+		Warning:   "Tis is hell",
 	}
 
-	report.setMessage()
+	// report.setMessage()
 
 	return report, nil
 
