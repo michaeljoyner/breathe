@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 
-	"github.com/alecthomas/template"
 	"github.com/joho/godotenv"
 	"github.com/michaeljoyner/breathe/air"
 )
@@ -18,25 +16,26 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, err)
 		return
 	}
-	fmt.Println(report)
-	tpl, err := ioutil.ReadFile("views/base.html")
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprint(w, err)
-		return
-	}
-	t, err := template.New("webpage").Parse(string(tpl))
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprint(w, err)
-		return
-	}
 
-	err = t.Execute(w, report)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprint(w, err)
-	}
+	// tpl, err := ioutil.ReadFile("views/base.html")
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	fmt.Fprint(w, err)
+	// 	return
+	// }
+	// t, err := template.New("webpage").Parse(string(tpl))
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	fmt.Fprint(w, err)
+	// 	return
+	// }
+
+	// err = t.Execute(w, report)
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	fmt.Fprint(w, err)
+	// }
+	fmt.Fprintln(w, report.Warning)
 }
 
 func main() {
