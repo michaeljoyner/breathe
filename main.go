@@ -31,7 +31,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	t.Execute(w, report)
+	err = t.Execute(w, report)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprint(w, err)
+	}
 }
 
 func main() {
