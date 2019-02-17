@@ -4,11 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Holla Bitches</title>
+    <title>Taichung Air Quality Index</title>
+    <style>
+      body {
+        min-height: 100vh;
+        background: #333;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .index {
+        font-size: 8rem;
+        font-weight: 900;
+      }
+    </style>
   </head>
   <body>
-    <p>Coming from {{ .Station }}</p>
-    <p>AQI is {{ .Index }}</p>
-    <p>Last Checked at: {{ .CheckedAt }}</p>
+    <p class="index">{{ .Index }}</p>
+    <footer>
+      <p>
+        <small>Coming from {{ .Station }}</small>
+      </p>
+      <p>
+        <small>Last Checked at: {{ .CheckedAt }}</small>
+      </p>
+    </footer>
   </body>
 </html>
