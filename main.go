@@ -18,6 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, err)
 		return
 	}
+	fmt.Println(report)
 	tpl, err := ioutil.ReadFile("views/base.html")
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
