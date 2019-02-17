@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 type Report struct {
@@ -65,7 +64,8 @@ type apiResp struct {
 
 //GetReport returns the current air quality index report
 func GetReport() (Report, error) {
-	resp, err := http.Get("http://api.waqi.info/feed/taichung/?token=" + os.Getenv("AQI_KEY"))
+	// resp, err := http.Get("http://api.waqi.info/feed/taichung/?token=" + os.Getenv("AQI_KEY"))
+	resp, err := http.Get("http://api.waqi.info/feed/taichung/?token=3da36023636e5377439cf1daffad79cccff9ef3d")
 	if err != nil {
 		return Report{}, err
 	}
