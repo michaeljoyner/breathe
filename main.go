@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/alecthomas/template"
+	"github.com/joho/godotenv"
 	"github.com/michaeljoyner/breathe/air"
 )
 
@@ -34,7 +35,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
+	godotenv.Load("/home/forge/air.magjoyner.com/.env")
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":3456", nil))
 }
