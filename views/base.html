@@ -37,10 +37,7 @@
       }
     </style>
   </head>
-  <body data-index="{{ .Index }}">
-    <pre>
-      {{ .Warning }}
-    </pre>
+  <body data-index="{{ .Index }}" data-date="{{ .CheckedAt }}">
     <p class="index">{{ .Index }}</p>
     <p>{{ .Warning }}</p>
     <footer>
@@ -48,7 +45,7 @@
         <small>Coming from {{ .Station }}</small>
       </p>
       <p>
-        <small>Last Checked at: {{ .CheckedAt }}</small>
+        <small>Reading taken at: <span class="check-time"></span></small>
       </p>
     </footer>
     <script>
@@ -76,6 +73,9 @@
         }
       }
       setColour(index);
+
+      const d = new Date(document.body.getAttribute("data-date"));
+      document.querySelector(".check-time").innerHTML(d.toLocaleTimeString);
     </script>
   </body>
 </html>
