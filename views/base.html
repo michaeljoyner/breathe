@@ -16,7 +16,7 @@
         color: #fff;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         position: relative;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -38,44 +38,46 @@
         margin-bottom: 1rem;
         margin-top: 0;
       }
+
+      header p {
+        margin: 0;
+        text-align: center;
+      }
     </style>
   </head>
-  <body data-index="{{ .Index }}" data-date="{{ .CheckedAt }}">
-    <p class="index">{{ .Index }}</p>
-    <p>{{ .Warning }}</p>
+  <body
+    data-index="{{ .Index }}"
+    data-date="{{ .CheckedAt }}"
+    data-level="{{ .Level }}"
+  >
+    <header>
+      <p>Air Quality Index</p>
+    </header>
+    <section>
+      <p class="index">{{ .Index }}</p>
+      <p>{{ .Warning }}</p>
+    </section>
+
     <footer>
       <p>
-        <small>Coming from {{ .Station }}</small>
+        <small>{{ .Station }}</small>
       </p>
       <p>
-        <small>Reading taken at: <span class="check-time"></span></small>
+        <small>Last updated: <span class="check-time"></span></small>
       </p>
     </footer>
     <script>
-      const index = document.body.getAttribute("data-index");
-      function setColour(index) {
-        if (parseInt(index) < 50) {
-          document.body.style.background = "#3ac7d3";
-          return;
-        }
-        if (parseInt(index) < 100) {
-          document.body.style.background = "#3ad33a";
-          return;
-        }
-        if (parseInt(index) < 150) {
-          document.body.style.background = "#d3cc3a";
-          return;
-        }
-        if (parseInt(index) < 200) {
-          document.body.style.background = "#d3703a";
-          return;
-        }
-        if (parseInt(index) < 250) {
-          document.body.style.background = "#d33a3a";
-          return;
-        }
-      }
-      setColour(index);
+      const colours = {
+        0: "#333",
+        1: "#3ac7d3",
+        2: "#3ad33a",
+        3: "#d3cc3a",
+        4: "#d3703a",
+        5: "#d33a3a",
+        5: "#333"
+      };
+      const level = parseInt(document.body.getAttribute("data-level"));
+      document.body.style.background = colours[level];
 
       const d = new Date(document.body.getAttribute("data-date"));
       document.querySelector(".check-time").innerHTML = d.toLocaleTimeString();
